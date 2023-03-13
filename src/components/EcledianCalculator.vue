@@ -1,12 +1,14 @@
 <template>
   <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
+    <v-responsive class="d-flex text-center fill-height pt-2">
       <v-row class="d-flex align-center justify-center">
         <v-col cols="auto">
           <v-text-field
             v-model="steps"
             label="Steps"
             type="text"
+            size="10"
+            maxlength="10"
             @input="calculateSequence"
             prepend-icon="mdi-chevron-left"
             @click:prepend="steps--; calculateSequence()"
@@ -20,6 +22,8 @@
             v-model="notes"
             label="Notes"
             type="text"
+            size="10"
+            maxlength="10"
             @input="calculateSequence"
             prepend-icon="mdi-chevron-left"
             @click:prepend="notes--; calculateSequence()"
@@ -33,6 +37,8 @@
             v-model="rotate"
             label="Rotate"
             type="text"
+            size="10"
+            maxlength="10"
             @input="calculateSequence"
             prepend-icon="mdi-chevron-left"
             @click:prepend="rotate--; calculateSequence()"
@@ -47,7 +53,11 @@
           <div 
             v-for="(step, i) in sequence"
             :key="i"
-            :class="{ 'filled': step, 'down-beat': i % 4 === 0 }"
+            :class="{
+              'filled': step,
+              'text-black': step,
+              'down-beat': i % 4 === 0
+            }"
             class="step"
             v-text="i + 1"
           ></div>
@@ -110,7 +120,7 @@ onMounted(() => {
   margin: .25rem;
   width: 2rem;
   height: 2.5rem;
-  border: 4px solid grey;
+  border: 4px solid darkgray;
   border-radius: 4px;
   background-color: transparent;
 }
@@ -120,7 +130,7 @@ onMounted(() => {
 }
 
 .step.down-beat {
-  border-bottom-color: black;
+  border-color: var('--v-theme-secondary');
 }
 
 </style>
