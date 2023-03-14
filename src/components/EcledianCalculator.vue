@@ -1,82 +1,16 @@
-<template>
-  <v-container class="fill-height">
-    <v-responsive class="d-flex text-center fill-height pt-2">
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-text-field
-            v-model="steps"
-            label="Steps"
-            type="text"
-            size="10"
-            maxlength="10"
-            @input="calculateSequence"
-            prepend-icon="mdi-chevron-left"
-            @click:prepend="steps--; calculateSequence()"
-            append-icon="mdi-chevron-right"
-            @click:append="steps++; calculateSequence()"
-          />
-        </v-col>
-
-        <v-col cols="auto">
-          <v-text-field
-            v-model="notes"
-            label="Notes"
-            type="text"
-            size="10"
-            maxlength="10"
-            @input="calculateSequence"
-            prepend-icon="mdi-chevron-left"
-            @click:prepend="notes--; calculateSequence()"
-            append-icon="mdi-chevron-right"
-            @click:append="notes++; calculateSequence()"
-          />
-        </v-col>
-
-        <v-col cols="auto">
-          <v-text-field
-            v-model="rotate"
-            label="Rotate"
-            type="text"
-            size="10"
-            maxlength="10"
-            @input="calculateSequence"
-            prepend-icon="mdi-chevron-left"
-            @click:prepend="rotate--; calculateSequence()"
-            append-icon="mdi-chevron-right"
-            @click:append="rotate++; calculateSequence()"
-          />
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col>
-          <div 
-            v-for="(step, i) in sequence"
-            :key="i"
-            :class="{
-              'filled': step,
-              'text-black': step,
-              'down-beat': i % 4 === 0
-            }"
-            class="step"
-            v-text="i + 1"
-          ></div>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container>
-</template>
-
 <script setup>
-import { ref, onMounted  } from 'vue'
+import { ref, reactive, onMounted  } from 'vue'
 
 const steps = ref(16);
 const notes = ref(3);
 const rotate = ref(0);
 const sequence = ref([])
 
+let ctx;
+
 function calculateSequence() {
   sequence.value = euclideanRythmCalculator()
+  canvasDraw()
 }
 
 function euclideanRythmCalculator() {
@@ -111,9 +45,118 @@ function euclideanRythmCalculator() {
 }
 
 onMounted(() => {
+  const canv = document.querySelector('#canvas');
+  const ctxS = canv.getContext('2d');
+  ctx = reactive(ctxS);
   calculateSequence()
 })
+
+function canvasDraw() {
+  ctx.clearRect(0, 0, 400, 400);
+  const steps = sequence.value.length
+  const PI = Math.PI;
+  const TWO_PI = PI * 2;
+  const sin = (s) => Math.sin(s);
+  const cos = (c) => Math.cos(c);
+  let x, y;
+  sequence.value.forEach((step, i)=>{
+    ctx.beginPath()
+    x = 100 * cos((TWO_PI * i / steps) - TWO_PI/4) + 150
+    y = 100 * sin((TWO_PI * i / steps) - TWO_PI/4) + 150
+    ctx.arc(x, y, 8, 0, TWO_PI);
+
+    if(step) {
+      ctx.fillStyle = "orange";
+      ctx.fill();
+      ctx.strokeStyle = "orange";
+      ctx.stroke();
+    } else {
+      ctx.strokeStyle = "rgb(200, 200, 200)";
+      ctx.stroke();
+    }
+  })
+}
 </script>
+
+<template>
+  <v-container class="fill-height">
+    <v-responsive class="d-flex text-center fill-height pt-4">
+      <v-row class="d-flex align-center justify-center pb-0">
+        <v-col cols="auto" class="pa-0 ma-0">
+          <v-text-field
+            v-model="steps"
+            density="compact"
+            label="Steps"
+            type="text"
+            size="5"
+            maxlength="5"
+            @input="calculateSequence"
+            prepend-icon="mdi-chevron-left"
+            @click:prepend="steps--; calculateSequence()"
+            append-icon="mdi-chevron-right"
+            @click:append="steps++; calculateSequence()"
+          />
+        </v-col>
+
+        <v-col cols="auto" class="pa-0 ma-0">
+          <v-text-field
+            v-model="notes"
+            density="compact"
+            label="Notes"
+            type="text"
+            size="5"
+            maxlength="5"
+            @input="calculateSequence"
+            prepend-icon="mdi-chevron-left"
+            @click:prepend="notes--; calculateSequence()"
+            append-icon="mdi-chevron-right"
+            @click:append="notes++; calculateSequence()"
+          />
+        </v-col>
+
+        <v-col cols="auto" class="pa-0 ma-0">
+          <v-text-field
+            v-model="rotate"
+            density="compact"
+            label="Rotate"
+            type="text"
+            size="5"
+            maxlength="5"
+            @input="calculateSequence"
+            prepend-icon="mdi-chevron-left"
+            @click:prepend="rotate--; calculateSequence()"
+            append-icon="mdi-chevron-right"
+            @click:append="rotate++; calculateSequence()"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row class="ma-0 pa-0">
+        <v-col class="ma-0 pa-0">
+          <canvas id="canvas" width="300" height="300"></canvas>
+        </v-col>
+      </v-row>
+
+      <v-row class="ma-0 pa-0">
+        <v-col class="ma-0 pa-0">
+          <div 
+            v-for="(step, i) in sequence"
+            :key="i"
+            :class="{
+              'filled': step,
+              'text-black': step,
+              'down-beat': i % 4 === 0
+            }"
+            class="step"
+            v-text="i + 1"
+          ></div>
+        </v-col>
+      </v-row>
+      
+    </v-responsive>
+  </v-container>
+</template>
+
 <style>
 .step {
   display: inline-block;
