@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted  } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()

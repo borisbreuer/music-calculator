@@ -24,10 +24,11 @@ export default createVuetify({
         colors: {
           primary: "#8BC34A",
           secondary: "#03DAC6",
-          error: "#B00020",
+          error: "#E91E63",
           info: "#2196F3",
           success: "#4CAF50",
           warning: "#FB8C00",
+
           yellow: "#FFEB3B",
           amber: "#FFC107",
           orange: "#FF9800",

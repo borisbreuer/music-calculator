@@ -18,7 +18,7 @@ const routes = [
     ],
   },
   {
-    path: "/euclidean/",
+    path: "/euclidean-rhythm-calculator/",
     component: () => import("@/layouts/default/Default.vue"),
     children: [
       {
@@ -30,7 +30,7 @@ const routes = [
     ],
   },
   {
-    path: "/bpm/",
+    path: "/bpm-calculator/",
     component: () => import("@/layouts/default/Default.vue"),
     children: [
       {
