@@ -28,7 +28,7 @@ const denominators = [1, 2, 4, 8, 16, 32, 64, 128];
 const notesObjArr = denominators.map((d) => {
   return ({ fraction: (numerator / d), value: `1/${d}`})
 })
-console.log(denominators)
+
 const notes = reactive(notesObjArr)
 </script>
 
