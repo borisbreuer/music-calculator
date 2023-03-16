@@ -53,7 +53,6 @@ const notes = reactive([
             append-icon="mdi-chevron-right"
             @click:append="bpm++; calculateSequence()"
           />
-          {{quaterNoteInMs}}
         </v-col>
       </v-row>
       <v-row class="d-flex align-center justify-center pb-0">
