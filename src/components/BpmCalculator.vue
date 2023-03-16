@@ -19,20 +19,17 @@ function calculateMs(fraction) {
   return quaterNoteInMs.value * fraction;
 }
 
-const trippletFraction = ref(0.66666667);
+const trippletFraction = ref(0.6666666666666667);
 const dottedFraction = ref(1.5);
 
-const notes = reactive([
-  { fraction: 4/1, value: '1/1' },
-  { fraction: 4/2, value: '1/2' },
-  { fraction: 4/4, value: '1/4' },
-  { fraction: 4/8, value: '1/8' },
-  { fraction: 4/16, value: '1/16' },
-  { fraction: 4/32, value: '1/32' },
-  { fraction: 4/64, value: '1/64' },
-  { fraction: 4/128, value: '1/128' },
-])
+const numerator = 4;
+const denominators = [1, 2, 4, 8, 16, 32, 64, 128];
 
+const notesObjArr = denominators.map((d) => {
+  return ({ fraction: (numerator / d), value: `1/${d}`})
+})
+console.log(denominators)
+const notes = reactive(notesObjArr)
 </script>
 
 <template>
