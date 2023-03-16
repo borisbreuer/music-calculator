@@ -4,7 +4,10 @@ import { ref, reactive, computed } from 'vue'
 const bpm = ref(60);
 
 const quaterNoteInMs = computed(() => {
-  return (60000 / parseFloat(bpm.value.toString().replace(',', '.')))
+  let bpmTemp = bpm.value;
+  bpmTemp = parseFloat(bpmTemp.toString().replace(',', '.'));
+  if(bpmTemp === 0 || bpmTemp === null || bpmTemp === undefined || isNaN(bpmTemp)) return 0
+  return (60000 / bpmTemp)
 })
 
 function numberFormat(n) {
@@ -12,6 +15,7 @@ function numberFormat(n) {
 }
 
 function calculateMs(fraction) {
+  if(isNaN(quaterNoteInMs.value)) return null
   return quaterNoteInMs.value * fraction;
 }
 
@@ -49,6 +53,7 @@ const notes = reactive([
             append-icon="mdi-chevron-right"
             @click:append="bpm++; calculateSequence()"
           />
+          {{quaterNoteInMs}}
         </v-col>
       </v-row>
       <v-row class="d-flex align-center justify-center pb-0">
