@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar :elevation="2">
+  <v-app-bar :elevation="2" color="orange">
     <template v-slot:prepend>
       <v-app-bar-nav-icon @click.stop="() => drawer = !drawer"></v-app-bar-nav-icon>
     </template>
@@ -22,7 +22,7 @@
     >
       <v-list>
         <v-list-item v-for="(item, i) in navItems" :to="item.path" :key="item.children[0].name + i">
-          {{item.children[0].name}}
+          {{$t(item.children[0].name)}}
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

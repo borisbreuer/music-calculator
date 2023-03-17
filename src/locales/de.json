@@ -1,4 +1,11 @@
 {
-  "message": "Hallo",
-  "greeting_header": "Willkommen beim Musikrechner"
+  "nav": {
+    "home": "Start",
+    "euclidean_calculator": "Euklidischer Rechner",
+    "bpm_calculator": "BPM Rechner"
+  },
+  "home": {
+    "title": "Musik-Rechner",
+    "greeting_header": "Willkommen beim @:home.title"
+  }
 }

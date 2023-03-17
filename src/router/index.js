@@ -8,36 +8,33 @@ const routes = [
     children: [
       {
         path: "",
-        name: "Home",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
+        name: "nav.home",
         component: () =>
           import(/* webpackChunkName: "home" */ "@/views/Home.vue"),
       },
     ],
   },
   {
-    path: "/euclidean-rhythm-calculator/",
+    path: "/euclidean-rhythm-calculator",
     component: () => import("@/layouts/default/Default.vue"),
     children: [
       {
         path: "",
-        name: "Euclidean Calculator",
+        name: "nav.euclidean_calculator",
         component: () =>
           import(/* webpackChunkName: "euclidean" */ "@/views/Eucledian.vue"),
       },
     ],
   },
   {
-    path: "/bpm-calculator/",
+    path: "/bpm-calculator",
     component: () => import("@/layouts/default/Default.vue"),
     children: [
       {
         path: "",
-        name: "BPM Calculator",
+        name: "nav.bpm_calculator",
         component: () =>
-          import(/* webpackChunkName: "euclidean" */ "@/views/Bpm.vue"),
+          import(/* webpackChunkName: "bpm" */ "@/views/Bpm.vue"),
       },
     ],
   },
