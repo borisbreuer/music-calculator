@@ -45,10 +45,12 @@ const notes = reactive(notesObjArr)
             type="number"
             size="5"
             maxlength="5"
+            class="mt-2"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="bpm--; calculateSequence()"
+            @focus="() => bpm = ''"
+            @click:prepend="() => bpm--"
             append-icon="mdi-chevron-right"
-            @click:append="bpm++; calculateSequence()"
+            @click:append="() => bpm++"
           />
         </v-col>
       </v-row>

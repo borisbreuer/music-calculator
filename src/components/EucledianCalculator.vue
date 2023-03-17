@@ -84,9 +84,9 @@ onMounted(() => {
 
 <template>
   <v-container class="fill-height">
-    <v-responsive class="d-flex text-center fill-height pt-4">
-      <v-row class="d-flex align-center justify-center pb-0">
-        <v-col cols="auto" class="pa-0 ma-0">
+    <v-responsive class="d-flex text-center fill-height">
+      <v-row class="d-flex align-center justify-center">
+        <v-col cols="auto">
           <v-text-field
             v-model="steps"
             density="compact"
@@ -95,15 +95,16 @@ onMounted(() => {
             type="text"
             size="5"
             maxlength="5"
+            class="mt-2"
             @input="calculateSequence"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="steps--; calculateSequence()"
+            @click:prepend="() => { steps--; calculateSequence() }"
             append-icon="mdi-chevron-right"
-            @click:append="steps++; calculateSequence()"
+            @click:append="() => { steps++; calculateSequence() }"
           />
         </v-col>
 
-        <v-col cols="auto" class="pa-0 ma-0">
+        <v-col cols="auto">
           <v-text-field
             v-model="notes"
             density="compact"
@@ -112,15 +113,16 @@ onMounted(() => {
             type="text"
             size="5"
             maxlength="5"
+            class="mt-2"
             @input="calculateSequence"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="notes--; calculateSequence()"
+            @click:prepend="() => { notes--; calculateSequence() }"
             append-icon="mdi-chevron-right"
-            @click:append="notes++; calculateSequence()"
+            @click:append="() => { notes++; calculateSequence() }"
           />
         </v-col>
 
-        <v-col cols="auto" class="pa-0 ma-0">
+        <v-col cols="auto">
           <v-text-field
             v-model="rotate"
             density="compact"
@@ -129,30 +131,30 @@ onMounted(() => {
             type="text"
             size="5"
             maxlength="5"
+            class="mt-2"
             @input="calculateSequence"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="rotate--; calculateSequence()"
+            @click:prepend="() => { rotate--; calculateSequence() }"
             append-icon="mdi-chevron-right"
-            @click:append="rotate++; calculateSequence()"
+            @click:append="() => { rotate++; calculateSequence() }"
           />
         </v-col>
       </v-row>
 
-      <v-row class="ma-0 pa-0">
-        <v-col class="ma-0 pa-0">
+      <v-row>
+        <v-col>
           <canvas ref="canvasEl" width="300" height="300"></canvas>
         </v-col>
       </v-row>
 
-      <v-row class="ma-0 pa-0">
-        <v-col class="ma-0 pa-0">
+      <v-row>
+        <v-col>
           <div 
             v-for="(step, i) in sequence"
             :key="i"
             :class="{
               'filled': step,
               'down-beat': i % 4 === 0,
-              'ml-1': i % 4 === 0,
             }"
             class="step mr-3"
             v-text="i + 1"
