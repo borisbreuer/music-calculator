@@ -3,6 +3,7 @@
     <template v-slot:prepend>
       <v-app-bar-nav-icon @click.stop="() => drawer = !drawer"></v-app-bar-nav-icon>
     </template>
+    {{ $t("home.title") }}
     <template v-slot:append>
       <v-select 
         v-model="$i18n.locale"
