@@ -1,0 +1,151 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BPM > test 1`] = `
+"<div class=\\"v-container fill-height\\">
+  <div class=\\"v-responsive d-flex fill-height pt-4\\">
+    <div class=\\"v-responsive__sizer\\"></div>
+    <!---->
+    <div class=\\"v-responsive__content\\">
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\">
+          <div class=\\"v-input v-input--horizontal v-input--density-compact v-input--dirty v-text-field mt-2\\">
+            <div class=\\"v-input__prepend\\">
+              <!----><i class=\\"mdi-chevron-left mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM prepended action\\"></i>
+            </div>
+            <div class=\\"v-input__control\\">
+              <div class=\\"v-field v-field--active v-field--dirty v-field--variant-filled v-theme--light\\" role=\\"textbox\\">
+                <div class=\\"v-field__overlay\\"></div>
+                <div class=\\"v-field__loader\\">
+                  <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
+                    <!---->
+                    <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
+                    <transition-stub>
+                      <div class=\\"v-progress-linear__indeterminate\\">
+                        <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
+                        <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
+                      </div>
+                    </transition-stub>
+                    <!---->
+                  </div>
+                </div>
+                <!---->
+                <div class=\\"v-field__field\\" data-no-activator=\\"\\"><label class=\\"v-label v-field-label v-field-label--floating\\" aria-hidden=\\"true\\" for=\\"input-0\\">
+                    <!---->BPM
+                  </label><label class=\\"v-label v-field-label\\" for=\\"input-0\\">
+                    <!---->BPM
+                  </label>
+                  <!----><input size=\\"5\\" type=\\"number\\" id=\\"input-0\\" aria-describedby=\\"input-0-messages\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!---->
+                </div>
+                <!---->
+                <!---->
+                <div class=\\"v-field__outline\\">
+                  <!---->
+                  <!---->
+                </div>
+              </div>
+            </div>
+            <div class=\\"v-input__append\\"><i class=\\"mdi-chevron-right mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM appended action\\"></i>
+              <!---->
+            </div>
+            <div class=\\"v-input__details\\">
+              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-0-messages\\">
+                <!---->
+              </transition-group-stub>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-10 pa-0 ma-0\\">
+          <div class=\\"v-table v-theme--light v-table--density-default\\">
+            <!---->
+            <div class=\\"v-table__wrapper\\">
+              <table>
+                <thead>
+                  <tr>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision dotted</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision tripplet</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1/1</td>
+                    <td>4.000,00 ms</td>
+                    <td class=\\"left-line\\">1/1 .</td>
+                    <td>6.000,00 ms</td>
+                    <td class=\\"left-line\\">1/1 T</td>
+                    <td>2.666,67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/2</td>
+                    <td>2.000,00 ms</td>
+                    <td class=\\"left-line\\">1/2 .</td>
+                    <td>3.000,00 ms</td>
+                    <td class=\\"left-line\\">1/2 T</td>
+                    <td>1.333,33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/4</td>
+                    <td>1.000,00 ms</td>
+                    <td class=\\"left-line\\">1/4 .</td>
+                    <td>1.500,00 ms</td>
+                    <td class=\\"left-line\\">1/4 T</td>
+                    <td>666,67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/8</td>
+                    <td>500,00 ms</td>
+                    <td class=\\"left-line\\">1/8 .</td>
+                    <td>750,00 ms</td>
+                    <td class=\\"left-line\\">1/8 T</td>
+                    <td>333,33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/16</td>
+                    <td>250,00 ms</td>
+                    <td class=\\"left-line\\">1/16 .</td>
+                    <td>375,00 ms</td>
+                    <td class=\\"left-line\\">1/16 T</td>
+                    <td>166,67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/32</td>
+                    <td>125,00 ms</td>
+                    <td class=\\"left-line\\">1/32 .</td>
+                    <td>187,50 ms</td>
+                    <td class=\\"left-line\\">1/32 T</td>
+                    <td>83,33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/64</td>
+                    <td>62,50 ms</td>
+                    <td class=\\"left-line\\">1/64 .</td>
+                    <td>93,75 ms</td>
+                    <td class=\\"left-line\\">1/64 T</td>
+                    <td>41,67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/128</td>
+                    <td>31,25 ms</td>
+                    <td class=\\"left-line\\">1/128 .</td>
+                    <td>46,88 ms</td>
+                    <td class=\\"left-line\\">1/128 T</td>
+                    <td>20,83 ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

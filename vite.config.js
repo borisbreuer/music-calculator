@@ -36,7 +36,7 @@ export default defineConfig({
     port: 3000,
   },
   test: {
-    globals: true,
+    globals: false,
     environment: "jsdom",
     setupFiles: "vuetify.config.js",
     deps: {
