@@ -7,7 +7,7 @@ describe("BPM", () => {
   it("test", async () => {
     const vuetify = createVuetify();
     // expect(BpmCalculator).toBeTruthy();
-    expect(1 + 1).toBe(2);
+    expect(1 + 1).toBe(3);
 
     const wrapper = mount(BpmCalculator, {
       props: {},
