@@ -7,7 +7,7 @@
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "test": "vitest run",
-    "test:w": "vitest run -w",
+    "test:w": "vitest",
     "test:u": "vitest run --update",
     "test:c": "vitest run --coverage"
   },

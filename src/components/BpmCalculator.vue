@@ -15,7 +15,6 @@ function numberFormat(n) {
 }
 
 function calculateMs(fraction) {
-  if(isNaN(quaterNoteInMs.value)) return null
   return quaterNoteInMs.value * fraction;
 }
 
@@ -39,6 +38,7 @@ const notes = reactive(notesObjArr)
         <v-col cols="auto" class="pa-0 ma-0">
           <v-text-field
             v-model="bpm"
+            data-testid="bpm"
             density="compact"
             color="deeporange"
             label="BPM"
@@ -68,16 +68,14 @@ const notes = reactive(notesObjArr)
               </tr>
             </thead>
             <tbody>
-              <template v-for="(note, i) in notes" :key="i">
-                <tr>
-                  <td>{{ note.value }}</td>
-                  <td>{{ numberFormat(calculateMs(note.fraction)) }} ms</td>
-                  <td class="left-line">{{ note.value }} .</td>
-                  <td>{{ numberFormat(calculateMs(note.fraction * dottedFraction)) }} ms</td>
-                  <td class="left-line">{{ note.value }} T</td>
-                  <td>{{ numberFormat(calculateMs(note.fraction * trippletFraction)) }} ms</td>
-                </tr>
-              </template>
+              <tr v-for="(note, i) in notes" :key="i">
+                <td>{{ note.value }}</td>
+                <td :data-testid="`msn-${i}`">{{ numberFormat(calculateMs(note.fraction)) }} ms</td>
+                <td class="left-line">{{ note.value }} .</td>
+                <td :data-testid="`msd-${i}`">{{ numberFormat(calculateMs(note.fraction * dottedFraction)) }} ms</td>
+                <td class="left-line">{{ note.value }} T</td>
+                <td :data-testid="`mst-${i}`">{{ numberFormat(calculateMs(note.fraction * trippletFraction)) }} ms</td>
+              </tr>
             </tbody>
           </v-table>
         </v-col>
