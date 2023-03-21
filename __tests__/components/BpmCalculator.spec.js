@@ -8,17 +8,10 @@ import BpmCalculator from "@/components/BpmCalculator.vue";
 
 describe("BPM Comonent", () => {
   const vuetify = createVuetify();
-  const i18n = createI18n({
-    locale: 'de'
-  });
+  const i18n = createI18n();
   let wrapper;
   const createComponent = () =>
     (wrapper = mount(BpmCalculator, {
-      mocks: {
-        $i18n: {
-          locale: 'de'
-        }
-      },
       global: {
         plugins: [
           vuetify,
