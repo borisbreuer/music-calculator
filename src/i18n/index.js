@@ -1,5 +1,6 @@
 import { createI18n } from "vue-i18n";
 import messages from "@intlify/unplugin-vue-i18n/messages";
+import numberFormats from './numberFormats'
 
 export default createI18n({
   legacy: false,
@@ -7,5 +8,6 @@ export default createI18n({
   locale: "en",
   fallbackLocale: "en",
   availableLocales: ["en", "de"],
-  messages: messages,
+  messages,
+  numberFormats
 });

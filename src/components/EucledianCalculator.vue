@@ -50,7 +50,7 @@ function euclideanRythmCalculator() {
 }
 
 function canvasDraw() {
-  ctx.value.clearRect(0, 0, 400, 400);
+  ctx.value.clearRect(0, 0, 500, 500);
   const steps = sequence.value.length
   const PI = Math.PI;
   const TWO_PI = PI * 2;
@@ -59,14 +59,14 @@ function canvasDraw() {
   let x, y;
   sequence.value.forEach((step, i)=>{
     ctx.value.beginPath()
-    x = 100 * cos((TWO_PI * i / steps) - TWO_PI/4) + 150
-    y = 100 * sin((TWO_PI * i / steps) - TWO_PI/4) + 150
-    ctx.value.arc(x, y, 9, 0, TWO_PI);
+    x = 180 * cos((TWO_PI * i / steps) - TWO_PI/4) + 200
+    y = 180 * sin((TWO_PI * i / steps) - TWO_PI/4) + 200
+    ctx.value.arc(x, y, 12, 0, TWO_PI);
 
     if(step) {
       ctx.value.fillStyle = vColors.amber;
       ctx.value.fill();
-      ctx.value.lineWidth = .8;
+      ctx.value.lineWidth = 2;
       ctx.value.strokeStyle = vColors.deeporange;
       ctx.value.stroke();
     } else {
@@ -93,14 +93,20 @@ onMounted(() => {
             color="deeporange"
             label="Steps"
             type="text"
-            size="5"
-            maxlength="5"
+            size="2"
+            maxlength="3"
+            autofocus
+            tabindex="0"
+            hide-details
             class="mt-2"
             @input="calculateSequence"
+            @focus="($event) => $event.target.select()"
             prepend-icon="mdi-chevron-left"
             @click:prepend="() => { steps--; calculateSequence() }"
+            @keydown.down="() => { steps--; calculateSequence() }"
             append-icon="mdi-chevron-right"
             @click:append="() => { steps++; calculateSequence() }"
+            @keydown.up="() => { steps++; calculateSequence() }"
           />
         </v-col>
 
@@ -109,16 +115,20 @@ onMounted(() => {
             v-model="notes"
             density="compact"
             color="deeporange"
-            label="Notes"
+            label="Triggers"
             type="text"
-            size="5"
-            maxlength="5"
+            size="2"
+            maxlength="3"
+            hide-details 
             class="mt-2"
             @input="calculateSequence"
+            @focus="($event) => $event.target.select()"
             prepend-icon="mdi-chevron-left"
             @click:prepend="() => { notes--; calculateSequence() }"
+            @keydown.down="() => { notes--; calculateSequence() }"
             append-icon="mdi-chevron-right"
             @click:append="() => { notes++; calculateSequence() }"
+            @keydown.up="() => { notes++; calculateSequence() }"
           />
         </v-col>
 
@@ -127,38 +137,44 @@ onMounted(() => {
             v-model="rotate"
             density="compact"
             color="deeporange"
-            label="Rotate"
+            label="Shift"
             type="text"
-            size="5"
-            maxlength="5"
+            size="2"
+            maxlength="3"
+            hide-details
             class="mt-2"
             @input="calculateSequence"
+            @focus="($event) => $event.target.select()"
             prepend-icon="mdi-chevron-left"
             @click:prepend="() => { rotate--; calculateSequence() }"
+            @keydown.down="() => { rotate--; calculateSequence() }"
             append-icon="mdi-chevron-right"
             @click:append="() => { rotate++; calculateSequence() }"
+            @keydown.up="() => { rotate++; calculateSequence() }"
           />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <canvas ref="canvasEl" width="300" height="300"></canvas>
+          <canvas ref="canvasEl" width="400" height="400"></canvas>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <div 
-            v-for="(step, i) in sequence"
-            :key="i"
-            :class="{
-              'filled': step,
-              'down-beat': i % 4 === 0,
-            }"
-            class="step mr-3"
-            v-text="i + 1"
-          ></div>
+          <div class="grid">
+            <div 
+              v-for="(step, i) in sequence"
+              :key="i"
+              :class="{
+                'filled': step,
+                'down-beat': i % 4 === 0,
+              }"
+              class="step"
+              v-text="i + 1"
+            ></div>
+          </div>
         </v-col>
       </v-row>
       
@@ -170,11 +186,17 @@ onMounted(() => {
 body {
   user-select: none;
 }
+
+.grid {
+  display: inline-grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1rem;
+}
+
 .step {
-  display: inline-block;
   width: 2rem;
   height: 2.5rem;
-  border: 2px solid darkgray;
+  border: 2px solid rgb(var(--v-theme-deeporange));
   border-radius: 2px;
   background-color: transparent;
   &.filled {
@@ -182,7 +204,16 @@ body {
     color: rgb(var(--v-theme-on-amber));
   }
   &.down-beat {
+    position: relative;
     border-color: rgb(var(--v-theme-deeporange));
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: -2px;
+      width: calc(100% + 4px);
+      border-top: 2px solid rgb(var(--v-theme-orange));
+    }
   }
 }
 </style>

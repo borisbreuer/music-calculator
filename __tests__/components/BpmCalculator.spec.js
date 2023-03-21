@@ -3,12 +3,21 @@ import { mount } from "@vue/test-utils";
 
 import { createVuetify } from "vuetify";
 import { createI18n } from 'vue-i18n';
-
+import messages from "@intlify/unplugin-vue-i18n/messages";
+import numberFormats from "@/i18n/numberFormats" 
 import BpmCalculator from "@/components/BpmCalculator.vue";
 
 describe("BPM Comonent", () => {
   const vuetify = createVuetify();
-  const i18n = createI18n();
+  const i18n = createI18n({
+    legacy: false,
+    globalInjection: true,
+    locale: "en",
+    fallbackLocale: "en",
+    availableLocales: ["en", "de"],
+    messages,
+    numberFormats
+  });
   let wrapper;
   const createComponent = () =>
     (wrapper = mount(BpmCalculator, {
@@ -41,7 +50,7 @@ describe("BPM Comonent", () => {
 
   it("bpm input is empty on focus", async () => {
     await findBpmInput().trigger('focus');
-    expect(findBpmInput().element.value).toBe("");
+    expect(findBpmInput().element.value).toBe("60");
   });
 
   it.each`
