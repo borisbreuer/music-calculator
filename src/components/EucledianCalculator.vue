@@ -59,8 +59,8 @@ function canvasDraw() {
   let x, y;
   sequence.value.forEach((step, i)=>{
     ctx.value.beginPath()
-    x = 180 * cos((TWO_PI * i / steps) - TWO_PI/4) + 200
-    y = 180 * sin((TWO_PI * i / steps) - TWO_PI/4) + 200
+    x = 126 * cos((TWO_PI * i / steps) - TWO_PI/4) + 150
+    y = 126 * sin((TWO_PI * i / steps) - TWO_PI/4) + 150
     ctx.value.arc(x, y, 12, 0, TWO_PI);
 
     if(step) {
@@ -119,7 +119,7 @@ onMounted(() => {
             type="text"
             size="2"
             maxlength="3"
-            hide-details 
+            hide-details
             class="mt-2"
             @input="calculateSequence"
             @focus="($event) => $event.target.select()"
@@ -157,7 +157,7 @@ onMounted(() => {
 
       <v-row>
         <v-col>
-          <canvas ref="canvasEl" width="400" height="400"></canvas>
+          <canvas ref="canvasEl" width="300" height="300"></canvas>
         </v-col>
       </v-row>
 
