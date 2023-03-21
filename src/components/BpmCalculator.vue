@@ -1,5 +1,7 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
+import i18n from '@/i18n';
+const locale = computed(() => i18n.global.locale.value)
 
 const bpm = ref(60);
 
@@ -11,7 +13,7 @@ const quaterNoteInMs = computed(() => {
 })
 
 function numberFormat(n) {
-  return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2})
+  return n.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2})
 }
 
 function calculateMs(fraction) {
