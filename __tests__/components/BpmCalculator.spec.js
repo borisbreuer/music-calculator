@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 
 import { createVuetify } from "vuetify";
@@ -7,17 +7,23 @@ import messages from "@intlify/unplugin-vue-i18n/messages";
 import numberFormats from "@/i18n/numberFormats" 
 import BpmCalculator from "@/components/BpmCalculator.vue";
 
+const vuetify = createVuetify();
+const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  locale: "en",
+  fallbackLocale: "en",
+  availableLocales: ["en", "de"],
+  messages,
+  numberFormats
+});
+
+const mockTfn = vi.fn((t) => t)
+const mockNfn = vi.fn((n) => n)
+i18n.t = mockTfn
+i18n.n = mockNfn
+
 describe("BPM Comonent", () => {
-  const vuetify = createVuetify();
-  const i18n = createI18n({
-    legacy: false,
-    globalInjection: true,
-    locale: "en",
-    fallbackLocale: "en",
-    availableLocales: ["en", "de"],
-    messages,
-    numberFormats
-  });
   let wrapper;
   const createComponent = () =>
     (wrapper = mount(BpmCalculator, {
@@ -45,12 +51,12 @@ describe("BPM Comonent", () => {
   it("renders Correctly", async () => {
     expect(BpmCalculator).toBeTruthy();
     expect(wrapper.html()).toMatchSnapshot();
-    expect(findBpmInput().element.value).toBe("60");
+    expect(findBpmInput().element.value).toBe("120");
   });
 
   it("bpm input is empty on focus", async () => {
     await findBpmInput().trigger('focus');
-    expect(findBpmInput().element.value).toBe("60");
+    expect(findBpmInput().element.value).toBe("120");
   });
 
   it.each`
@@ -69,15 +75,17 @@ describe("BPM Comonent", () => {
 
   it("decrements bpm", async () => {
     await findBpmDecrementBtn().trigger("click");
-    expect(findBpmInput().element.value).toBe("59");
+    expect(findBpmInput().element.value).toBe("119");
   });
 
   it("increments bpm", async () => {
     await findBpmIncrementBtn().trigger("click");
-    expect(findBpmInput().element.value).toBe("61");
+    expect(findBpmInput().element.value).toBe("121");
   });
 
   it("bpm value 60 calculates correct milliseconds", async () => {
+    await findBpmInput().setValue(60);
+
     expect(findMsTd("n", 0).text()).toBe("4,000.00 ms");
     expect(findMsTd("d", 0).text()).toBe("6,000.00 ms");
     expect(findMsTd("t", 0).text()).toBe("2,666.67 ms");

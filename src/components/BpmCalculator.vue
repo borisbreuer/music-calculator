@@ -1,15 +1,10 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
-import { useI18n } from 'vue-i18n';
-const i18n = useI18n()
 
-const locale = ref(i18n.locale)
-
-const bpm = ref(60);
+const bpm = ref(120);
 
 const quaterNoteInMs = computed(() => {
   let bpmTemp = parseFloat(bpm.value);
-  // bpmTemp = parseFloat(bpmTemp.toString().replace(',', '.'));
   if(bpmTemp === 0 || bpmTemp === null || bpmTemp === undefined || isNaN(bpmTemp)) return 0
   return (60000 / bpmTemp)
 })
@@ -18,12 +13,8 @@ const commaReplace = (n) => {
   return n.toString().replace(',', '.')
 }
 
-function numberFormat(n) {
-  return n.toLocaleString(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2})
-}
-
 function calculateMs(fraction) {
-  return numberFormat(quaterNoteInMs.value * fraction);
+  return quaterNoteInMs.value * fraction;
 }
 
 const trippletFraction = ref(0.6666666666666667);
@@ -51,18 +42,17 @@ const notes = reactive(notesObjArr)
             density="compact"
             color="deeporange"
             label="BPM"
-            type="text"
+            type="number"
+            inputmode="decimal"
+            max="260"
             size="2"
             maxlength="5"
             autofocus
             class="mt-2"
             prepend-icon="mdi-chevron-left"
-            @focus="($event) => $event.target.select()"
             @click:prepend="() => bpm--"
-            @keydown.down="() => bpm--"
             append-icon="mdi-chevron-right"
             @click:append="() => bpm++"
-            @keydown.up="() => bpm++"
           />
         </v-col>
       </v-row>
@@ -82,11 +72,11 @@ const notes = reactive(notesObjArr)
             <tbody>
               <tr v-for="(note, i) in notes" :key="i">
                 <td>{{ note.value }}</td>
-                <td :data-testid="`msn-${i}`">{{ calculateMs(note.fraction) }} ms</td>
+                <td :data-testid="`msn-${i}`">{{ $n(calculateMs(note.fraction), 'decimal') }} ms</td>
                 <td class="left-line">{{ note.value }} .</td>
-                <td :data-testid="`msd-${i}`">{{ calculateMs(note.fraction * dottedFraction) }} ms</td>
+                <td :data-testid="`msd-${i}`">{{ $n(calculateMs(note.fraction * dottedFraction), 'decimal') }} ms</td>
                 <td class="left-line">{{ note.value }} T</td>
-                <td :data-testid="`mst-${i}`">{{ calculateMs(note.fraction * trippletFraction) }} ms</td>
+                <td :data-testid="`mst-${i}`">{{ $n(calculateMs(note.fraction * trippletFraction), 'decimal') }} ms</td>
               </tr>
             </tbody>
           </v-table>

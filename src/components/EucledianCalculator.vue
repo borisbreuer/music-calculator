@@ -13,9 +13,17 @@ const sequence = ref([])
 const canvasEl = ref();
 const ctx = ref();
 
+function inputHandler(value = null, dir) {
+  if(value !== null) {
+    if(dir === 'up') value++
+    if(dir === 'down') value--
+  }
+  calculateSequence();
+  canvasDraw()
+}
+
 function calculateSequence() {
   sequence.value = euclideanRythmCalculator()
-  canvasDraw()
 }
 
 function euclideanRythmCalculator() {
@@ -50,35 +58,59 @@ function euclideanRythmCalculator() {
 }
 
 function canvasDraw() {
-  ctx.value.clearRect(0, 0, 500, 500);
-  const steps = sequence.value.length
+  const WIDTH = parseInt(canvasEl.value.width);
+  const HEIGHT = parseInt(canvasEl.value.height);
+  const HALF_W = WIDTH/2;
+  const HALF_H = HEIGHT/2;
   const PI = Math.PI;
   const TWO_PI = PI * 2;
+  const HALF_PI = PI/2;
+
+  const lineWidth = 2;
+  const radiusSteps = 12;
+  const radiusSequenceX = HALF_W - (radiusSteps + lineWidth);
+  const radiusSequenceY = HALF_H - (radiusSteps + lineWidth);
+
+  const steps = sequence.value.length
   const sin = (s) => Math.sin(s);
   const cos = (c) => Math.cos(c);
   let x, y;
+
+  ctx.value.clearRect(0, 0, WIDTH, HEIGHT);
+  
+  ctx.value.fillStyle = vColors.deeporange;
+  
+  ctx.value.beginPath()
+  ctx.value.moveTo(HALF_W, 35)
+  ctx.value.lineTo(HALF_W + 7, 40)
+  ctx.value.lineTo(HALF_W - 7, 40)
+  ctx.value.closePath();
+  ctx.value.fill();
+
+  ctx.value.strokeStyle = vColors.deeporange;
+  ctx.value.fillStyle = vColors.amber;
+  ctx.value.lineWidth = 2;
+
   sequence.value.forEach((step, i)=>{
     ctx.value.beginPath()
-    x = 126 * cos((TWO_PI * i / steps) - TWO_PI/4) + 150
-    y = 126 * sin((TWO_PI * i / steps) - TWO_PI/4) + 150
-    ctx.value.arc(x, y, 12, 0, TWO_PI);
-
+    x = radiusSequenceX * cos((TWO_PI * i / steps) - HALF_PI) + HALF_W
+    y = radiusSequenceY * sin((TWO_PI * i / steps) - HALF_PI) + HALF_H
+    ctx.value.arc(x, y, radiusSteps, 0, TWO_PI);
     if(step) {
-      ctx.value.fillStyle = vColors.amber;
       ctx.value.fill();
-      ctx.value.lineWidth = 2;
-      ctx.value.strokeStyle = vColors.deeporange;
       ctx.value.stroke();
     } else {
       ctx.value.strokeStyle = vColors.deeporange;
       ctx.value.stroke();
     }
+    ctx.value.closePath();
   })
 }
 
 onMounted(() => {
   ctx.value = canvasEl.value.getContext('2d');
-  calculateSequence()
+  calculateSequence();
+  canvasDraw();
 })
 </script>
 
@@ -92,72 +124,71 @@ onMounted(() => {
             density="compact"
             color="deeporange"
             label="Steps"
-            type="text"
+            type="number"
+            inputmode="numeric"
+            max="99"
             size="2"
             maxlength="3"
             autofocus
             tabindex="0"
             hide-details
             class="mt-2"
-            @input="calculateSequence"
-            @focus="($event) => $event.target.select()"
+            @input="inputHandler"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="() => { steps--; calculateSequence() }"
-            @keydown.down="() => { steps--; calculateSequence() }"
+            @click:prepend="() => { steps--; inputHandler() }"
             append-icon="mdi-chevron-right"
-            @click:append="() => { steps++; calculateSequence() }"
-            @keydown.up="() => { steps++; calculateSequence() }"
+            @click:append="() => { steps++; inputHandler() }"
           />
         </v-col>
-
+      </v-row>
+      <v-row class="d-flex align-center justify-center">
         <v-col cols="auto">
           <v-text-field
             v-model="notes"
             density="compact"
             color="deeporange"
             label="Triggers"
-            type="text"
+            type="number"
+            inputmode="numeric"
+            max="99"
             size="2"
             maxlength="3"
             hide-details
             class="mt-2"
             @input="calculateSequence"
-            @focus="($event) => $event.target.select()"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="() => { notes--; calculateSequence() }"
-            @keydown.down="() => { notes--; calculateSequence() }"
+            @click:prepend="() => { notes--; inputHandler() }"
             append-icon="mdi-chevron-right"
-            @click:append="() => { notes++; calculateSequence() }"
-            @keydown.up="() => { notes++; calculateSequence() }"
+            @click:append="() => { notes++; inputHandler() }"
           />
         </v-col>
-
+      </v-row>
+      <v-row class="d-flex align-center justify-center">    
         <v-col cols="auto">
           <v-text-field
             v-model="rotate"
             density="compact"
             color="deeporange"
             label="Shift"
-            type="text"
+            type="number"
+            inputmode="numeric"
+            max="99"
             size="2"
             maxlength="3"
             hide-details
             class="mt-2"
             @input="calculateSequence"
-            @focus="($event) => $event.target.select()"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="() => { rotate--; calculateSequence() }"
-            @keydown.down="() => { rotate--; calculateSequence() }"
+            @click:prepend="() => { rotate--; inputHandler() }"
             append-icon="mdi-chevron-right"
-            @click:append="() => { rotate++; calculateSequence() }"
-            @keydown.up="() => { rotate++; calculateSequence() }"
+            @click:append="() => { rotate++; inputHandler() }"
           />
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <canvas ref="canvasEl" width="300" height="300"></canvas>
+          <canvas ref="canvasEl" width="240" height="240"></canvas>
         </v-col>
       </v-row>
 
@@ -187,6 +218,19 @@ body {
   user-select: none;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .grid {
   display: inline-grid;
   grid-template-columns: repeat(8, 1fr);
@@ -194,8 +238,9 @@ body {
 }
 
 .step {
-  width: 2rem;
-  height: 2.5rem;
+  font-size: .9rem;
+  width: 1.5rem;
+  height: 2rem;
   border: 2px solid rgb(var(--v-theme-deeporange));
   border-radius: 2px;
   background-color: transparent;
