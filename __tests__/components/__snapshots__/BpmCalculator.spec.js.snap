@@ -7,6 +7,13 @@ exports[`BPM Comonent > renders Correctly 1`] = `
     <!---->
     <div class=\\"v-responsive__content\\">
       <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\"><button type=\\"button\\" class=\\"v-btn v-btn--elevated v-theme--light bg-deeporange v-btn--density-default v-btn--size-default v-btn--variant-elevated mb-2\\"><span class=\\"v-btn__overlay\\"></span><span class=\\"v-btn__underlay\\"></span>
+            <!----><span class=\\"v-btn__content\\" data-no-activator=\\"\\"> Tab Tempo [Space] </span>
+            <!---->
+            <!---->
+          </button></div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
         <div class=\\"v-col v-col-auto pa-0 ma-0\\">
           <div class=\\"v-input v-input--horizontal v-input--density-compact v-input--dirty v-text-field mt-2\\" data-testid=\\"bpm\\">
             <div class=\\"v-input__prepend\\">
@@ -29,12 +36,12 @@ exports[`BPM Comonent > renders Correctly 1`] = `
                   </div>
                 </div>
                 <!---->
-                <div class=\\"v-field__field\\" data-no-activator=\\"\\"><label class=\\"v-label v-field-label v-field-label--floating\\" aria-hidden=\\"true\\" for=\\"input-0\\">
+                <div class=\\"v-field__field\\" data-no-activator=\\"\\"><label class=\\"v-label v-field-label v-field-label--floating\\" aria-hidden=\\"true\\" for=\\"input-1\\">
                     <!---->BPM
-                  </label><label class=\\"v-label v-field-label\\" for=\\"input-0\\">
+                  </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
                     <!---->BPM
                   </label>
-                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-0\\" aria-describedby=\\"input-0-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
                   <!---->
                 </div>
                 <!---->
@@ -49,7 +56,7 @@ exports[`BPM Comonent > renders Correctly 1`] = `
               <!---->
             </div>
             <div class=\\"v-input__details\\">
-              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-0-messages\\">
+              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
                 <!---->
               </transition-group-stub>
               <!---->

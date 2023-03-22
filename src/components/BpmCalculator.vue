@@ -1,7 +1,46 @@
 <script setup>
 import { ref, reactive, computed } from 'vue'
 
+let abSwitch = 0
+let popArray = null
+let timeArr = ref([])
+const timeA = ref(null)
+const timeB = ref(null)
+const calculating = ref(false)
 const bpm = ref(120);
+
+function tabTempoHandler() {
+  if(abSwitch === 0){
+    timeA.value = Date.now();
+    abSwitch = 1;
+  } else if(abSwitch === 1) {
+    timeB.value = Date.now();
+    abSwitch = 0;
+  }
+  if(abSwitch === 0 && timeA.value !== null && timeB.value !== null ) {
+    timeArr.value.push((timeB.value - timeA.value))
+    if(timeArr.value.length > 4) timeArr.value.shift()
+    bpm.value = (60000 / (timeArr.value.reduce((a, c) => (c + a), 0) / timeArr.value.length)).toFixed(2)
+    calculating.value = true
+  }
+  if(timeArr.value.length){
+    if(popArray === null){
+      const time = timeArr.value[timeArr.value.length - 1] * 4 > 2000 ? 2000 : timeArr.value[timeArr.value.length - 1] * 4
+      popArray = setInterval(() => {
+        timeArr.value.shift()
+        if(!timeArr.value.length) {
+          clearInterval(popArray)
+          abSwitch = 0
+          timeArr.value = []
+          timeA.value = null;
+          timeB.value = null;
+          calculating.value = false;
+          popArray = null
+        }
+      }, time)
+    }
+  } 
+}
 
 const quaterNoteInMs = computed(() => {
   let bpmTemp = parseFloat(bpm.value);
@@ -33,6 +72,18 @@ const notes = reactive(notesObjArr)
 <template>
   <v-container class="fill-height">
     <v-responsive class="d-flex fill-height pt-4">
+      <v-row class="d-flex align-center justify-center pb-0">
+        <v-col cols="auto" class="pa-0 ma-0">
+          <v-btn
+            @click="tabTempoHandler"
+            @keydown.ctrl.space="tabTempoHandler"
+            :color="calculating ? 'amber' : 'deeporange'"
+            class="mb-2"
+          >
+            Tab Tempo [Space]
+          </v-btn>
+        </v-col>
+      </v-row>
       <v-row class="d-flex align-center justify-center pb-0">
         <v-col cols="auto" class="pa-0 ma-0">
           <v-text-field

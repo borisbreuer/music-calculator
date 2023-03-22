@@ -48,6 +48,8 @@ describe("BPM Comonent", () => {
     wrapper.unmount();
   });
 
+  it('calculates bpm by tap on btn')
+
   it("renders Correctly", async () => {
     expect(BpmCalculator).toBeTruthy();
     expect(wrapper.html()).toMatchSnapshot();
