@@ -35,30 +35,100 @@ describe("BPM Comonent", () => {
       },
     }));
 
+  const findBpmTabTempoBtn = () => wrapper.find('[data-testid="tabtempo"]');
   const findBpmDecrementBtn = () => wrapper.find('[data-testid="bpm"] > .v-input__prepend > i');
   const findBpmInput = () => wrapper.find('[data-testid="bpm"] input');
   const findBpmIncrementBtn = () => wrapper.find('[data-testid="bpm"] > .v-input__append > i');
   const findMsTd = (varint, i) => wrapper.find(`[data-testid="ms${varint}-${i}"]`);
-  
-  beforeEach(() => {
-    createComponent();
-  });
 
-  afterEach(() => {
-    wrapper.unmount();
-  });
-
-  it('calculates bpm by tap on btn')
+  beforeEach(() => createComponent());
+  afterEach(() => wrapper.unmount());
 
   it("renders Correctly", async () => {
     expect(BpmCalculator).toBeTruthy();
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot('Initial');
     expect(findBpmInput().element.value).toBe("120");
   });
 
+  it('calculates bpm by tap on btn', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1600)
+    await findBpmTabTempoBtn().trigger('click')
+    expect(findBpmInput().element.value).toBe('100.00')
+    expect(wrapper.html()).toMatchSnapshot('tabTempo')
+    vi.useRealTimers()
+  })
+
+  it('calculates bpm by 5x tap on btn', async () => {
+    vi.useFakeTimers()
+
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1600)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1600)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1600)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1600)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1600)
+    await findBpmTabTempoBtn().trigger('click')
+
+    expect(findBpmInput().element.value).toBe('100.00')
+    expect(wrapper.html()).toMatchSnapshot('tabTempo5x')
+    vi.useRealTimers()
+  })
+  it('calculates bpm by 5x tap on btn < 2000', async () => {
+    vi.useFakeTimers()
+
+    vi.setSystemTime(5000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(5200)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(4000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(4200)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(3000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(3200)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(2000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(2200)
+    await findBpmTabTempoBtn().trigger('click')
+
+    vi.setSystemTime(1000)
+    await findBpmTabTempoBtn().trigger('click')
+    vi.setSystemTime(1200)
+    await findBpmTabTempoBtn().trigger('click')
+
+    expect(findBpmInput().element.value).toBe('300.00')
+    expect(wrapper.html()).toMatchSnapshot('tabTempo5x<2000')
+    vi.useRealTimers()
+  })
+
   it("bpm input is empty on focus", async () => {
-    await findBpmInput().trigger('focus');
-    expect(findBpmInput().element.value).toBe("120");
+    await findBpmInput().trigger('focus')
+    expect(findBpmInput().element.value).toBe("120")
   });
 
   it.each`

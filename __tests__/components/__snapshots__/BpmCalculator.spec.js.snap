@@ -1,13 +1,484 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`BPM Comonent > renders Correctly 1`] = `
+exports[`BPM Comonent > calculates bpm by 5x tap on btn < 2000 > tabTempo5x<2000 1`] = `
 "<div class=\\"v-container fill-height\\">
   <div class=\\"v-responsive d-flex fill-height pt-4\\">
     <div class=\\"v-responsive__sizer\\"></div>
     <!---->
     <div class=\\"v-responsive__content\\">
       <div class=\\"v-row d-flex align-center justify-center pb-0\\">
-        <div class=\\"v-col v-col-auto pa-0 ma-0\\"><button type=\\"button\\" class=\\"v-btn v-btn--elevated v-theme--light bg-deeporange v-btn--density-default v-btn--size-default v-btn--variant-elevated mb-2\\"><span class=\\"v-btn__overlay\\"></span><span class=\\"v-btn__underlay\\"></span>
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\"><button type=\\"button\\" class=\\"v-btn v-btn--elevated v-theme--light bg-amber v-btn--density-default v-btn--size-default v-btn--variant-elevated mb-2\\" data-testid=\\"tabtempo\\"><span class=\\"v-btn__overlay\\"></span><span class=\\"v-btn__underlay\\"></span>
+            <!----><span class=\\"v-btn__content\\" data-no-activator=\\"\\"> Tab Tempo [Space] </span>
+            <!---->
+            <!---->
+          </button></div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\">
+          <div class=\\"v-input v-input--horizontal v-input--density-compact v-input--dirty v-text-field mt-2\\" data-testid=\\"bpm\\">
+            <div class=\\"v-input__prepend\\">
+              <!----><i class=\\"mdi-chevron-left mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM prepended action\\"></i>
+            </div>
+            <div class=\\"v-input__control\\">
+              <div class=\\"v-field v-field--active v-field--dirty v-field--variant-filled v-theme--light\\" role=\\"textbox\\">
+                <div class=\\"v-field__overlay\\"></div>
+                <div class=\\"v-field__loader\\">
+                  <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
+                    <!---->
+                    <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
+                    <transition-stub>
+                      <div class=\\"v-progress-linear__indeterminate\\">
+                        <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
+                        <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
+                      </div>
+                    </transition-stub>
+                    <!---->
+                  </div>
+                </div>
+                <!---->
+                <div class=\\"v-field__field\\" data-no-activator=\\"\\"><label class=\\"v-label v-field-label v-field-label--floating\\" aria-hidden=\\"true\\" for=\\"input-1\\">
+                    <!---->BPM
+                  </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
+                    <!---->BPM
+                  </label>
+                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!---->
+                </div>
+                <!---->
+                <!---->
+                <div class=\\"v-field__outline\\">
+                  <!---->
+                  <!---->
+                </div>
+              </div>
+            </div>
+            <div class=\\"v-input__append\\"><i class=\\"mdi-chevron-right mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM appended action\\"></i>
+              <!---->
+            </div>
+            <div class=\\"v-input__details\\">
+              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+                <!---->
+              </transition-group-stub>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-10 pa-0 ma-0\\">
+          <div class=\\"v-table v-theme--light v-table--density-default\\">
+            <!---->
+            <div class=\\"v-table__wrapper\\">
+              <table>
+                <thead>
+                  <tr>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision dotted</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision tripplet</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1/1</td>
+                    <td data-testid=\\"msn-0\\">800.00 ms</td>
+                    <td class=\\"left-line\\">1/1 .</td>
+                    <td data-testid=\\"msd-0\\">1,200.00 ms</td>
+                    <td class=\\"left-line\\">1/1 T</td>
+                    <td data-testid=\\"mst-0\\">533.33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/2</td>
+                    <td data-testid=\\"msn-1\\">400.00 ms</td>
+                    <td class=\\"left-line\\">1/2 .</td>
+                    <td data-testid=\\"msd-1\\">600.00 ms</td>
+                    <td class=\\"left-line\\">1/2 T</td>
+                    <td data-testid=\\"mst-1\\">266.67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/4</td>
+                    <td data-testid=\\"msn-2\\">200.00 ms</td>
+                    <td class=\\"left-line\\">1/4 .</td>
+                    <td data-testid=\\"msd-2\\">300.00 ms</td>
+                    <td class=\\"left-line\\">1/4 T</td>
+                    <td data-testid=\\"mst-2\\">133.33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/8</td>
+                    <td data-testid=\\"msn-3\\">100.00 ms</td>
+                    <td class=\\"left-line\\">1/8 .</td>
+                    <td data-testid=\\"msd-3\\">150.00 ms</td>
+                    <td class=\\"left-line\\">1/8 T</td>
+                    <td data-testid=\\"mst-3\\">66.67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/16</td>
+                    <td data-testid=\\"msn-4\\">50.00 ms</td>
+                    <td class=\\"left-line\\">1/16 .</td>
+                    <td data-testid=\\"msd-4\\">75.00 ms</td>
+                    <td class=\\"left-line\\">1/16 T</td>
+                    <td data-testid=\\"mst-4\\">33.33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/32</td>
+                    <td data-testid=\\"msn-5\\">25.00 ms</td>
+                    <td class=\\"left-line\\">1/32 .</td>
+                    <td data-testid=\\"msd-5\\">37.50 ms</td>
+                    <td class=\\"left-line\\">1/32 T</td>
+                    <td data-testid=\\"mst-5\\">16.67 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/64</td>
+                    <td data-testid=\\"msn-6\\">12.50 ms</td>
+                    <td class=\\"left-line\\">1/64 .</td>
+                    <td data-testid=\\"msd-6\\">18.75 ms</td>
+                    <td class=\\"left-line\\">1/64 T</td>
+                    <td data-testid=\\"mst-6\\">8.33 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/128</td>
+                    <td data-testid=\\"msn-7\\">6.25 ms</td>
+                    <td class=\\"left-line\\">1/128 .</td>
+                    <td data-testid=\\"msd-7\\">9.38 ms</td>
+                    <td class=\\"left-line\\">1/128 T</td>
+                    <td data-testid=\\"mst-7\\">4.17 ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`BPM Comonent > calculates bpm by 5x tap on btn > tabTempo5x 1`] = `
+"<div class=\\"v-container fill-height\\">
+  <div class=\\"v-responsive d-flex fill-height pt-4\\">
+    <div class=\\"v-responsive__sizer\\"></div>
+    <!---->
+    <div class=\\"v-responsive__content\\">
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\"><button type=\\"button\\" class=\\"v-btn v-btn--elevated v-theme--light bg-amber v-btn--density-default v-btn--size-default v-btn--variant-elevated mb-2\\" data-testid=\\"tabtempo\\"><span class=\\"v-btn__overlay\\"></span><span class=\\"v-btn__underlay\\"></span>
+            <!----><span class=\\"v-btn__content\\" data-no-activator=\\"\\"> Tab Tempo [Space] </span>
+            <!---->
+            <!---->
+          </button></div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\">
+          <div class=\\"v-input v-input--horizontal v-input--density-compact v-input--dirty v-text-field mt-2\\" data-testid=\\"bpm\\">
+            <div class=\\"v-input__prepend\\">
+              <!----><i class=\\"mdi-chevron-left mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM prepended action\\"></i>
+            </div>
+            <div class=\\"v-input__control\\">
+              <div class=\\"v-field v-field--active v-field--dirty v-field--variant-filled v-theme--light\\" role=\\"textbox\\">
+                <div class=\\"v-field__overlay\\"></div>
+                <div class=\\"v-field__loader\\">
+                  <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
+                    <!---->
+                    <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
+                    <transition-stub>
+                      <div class=\\"v-progress-linear__indeterminate\\">
+                        <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
+                        <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
+                      </div>
+                    </transition-stub>
+                    <!---->
+                  </div>
+                </div>
+                <!---->
+                <div class=\\"v-field__field\\" data-no-activator=\\"\\"><label class=\\"v-label v-field-label v-field-label--floating\\" aria-hidden=\\"true\\" for=\\"input-1\\">
+                    <!---->BPM
+                  </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
+                    <!---->BPM
+                  </label>
+                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!---->
+                </div>
+                <!---->
+                <!---->
+                <div class=\\"v-field__outline\\">
+                  <!---->
+                  <!---->
+                </div>
+              </div>
+            </div>
+            <div class=\\"v-input__append\\"><i class=\\"mdi-chevron-right mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM appended action\\"></i>
+              <!---->
+            </div>
+            <div class=\\"v-input__details\\">
+              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+                <!---->
+              </transition-group-stub>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-10 pa-0 ma-0\\">
+          <div class=\\"v-table v-theme--light v-table--density-default\\">
+            <!---->
+            <div class=\\"v-table__wrapper\\">
+              <table>
+                <thead>
+                  <tr>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision dotted</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision tripplet</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1/1</td>
+                    <td data-testid=\\"msn-0\\">2,400.00 ms</td>
+                    <td class=\\"left-line\\">1/1 .</td>
+                    <td data-testid=\\"msd-0\\">3,600.00 ms</td>
+                    <td class=\\"left-line\\">1/1 T</td>
+                    <td data-testid=\\"mst-0\\">1,600.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/2</td>
+                    <td data-testid=\\"msn-1\\">1,200.00 ms</td>
+                    <td class=\\"left-line\\">1/2 .</td>
+                    <td data-testid=\\"msd-1\\">1,800.00 ms</td>
+                    <td class=\\"left-line\\">1/2 T</td>
+                    <td data-testid=\\"mst-1\\">800.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/4</td>
+                    <td data-testid=\\"msn-2\\">600.00 ms</td>
+                    <td class=\\"left-line\\">1/4 .</td>
+                    <td data-testid=\\"msd-2\\">900.00 ms</td>
+                    <td class=\\"left-line\\">1/4 T</td>
+                    <td data-testid=\\"mst-2\\">400.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/8</td>
+                    <td data-testid=\\"msn-3\\">300.00 ms</td>
+                    <td class=\\"left-line\\">1/8 .</td>
+                    <td data-testid=\\"msd-3\\">450.00 ms</td>
+                    <td class=\\"left-line\\">1/8 T</td>
+                    <td data-testid=\\"mst-3\\">200.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/16</td>
+                    <td data-testid=\\"msn-4\\">150.00 ms</td>
+                    <td class=\\"left-line\\">1/16 .</td>
+                    <td data-testid=\\"msd-4\\">225.00 ms</td>
+                    <td class=\\"left-line\\">1/16 T</td>
+                    <td data-testid=\\"mst-4\\">100.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/32</td>
+                    <td data-testid=\\"msn-5\\">75.00 ms</td>
+                    <td class=\\"left-line\\">1/32 .</td>
+                    <td data-testid=\\"msd-5\\">112.50 ms</td>
+                    <td class=\\"left-line\\">1/32 T</td>
+                    <td data-testid=\\"mst-5\\">50.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/64</td>
+                    <td data-testid=\\"msn-6\\">37.50 ms</td>
+                    <td class=\\"left-line\\">1/64 .</td>
+                    <td data-testid=\\"msd-6\\">56.25 ms</td>
+                    <td class=\\"left-line\\">1/64 T</td>
+                    <td data-testid=\\"mst-6\\">25.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/128</td>
+                    <td data-testid=\\"msn-7\\">18.75 ms</td>
+                    <td class=\\"left-line\\">1/128 .</td>
+                    <td data-testid=\\"msd-7\\">28.13 ms</td>
+                    <td class=\\"left-line\\">1/128 T</td>
+                    <td data-testid=\\"mst-7\\">12.50 ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`BPM Comonent > calculates bpm by tap on btn > tabTempo 1`] = `
+"<div class=\\"v-container fill-height\\">
+  <div class=\\"v-responsive d-flex fill-height pt-4\\">
+    <div class=\\"v-responsive__sizer\\"></div>
+    <!---->
+    <div class=\\"v-responsive__content\\">
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\"><button type=\\"button\\" class=\\"v-btn v-btn--elevated v-theme--light bg-amber v-btn--density-default v-btn--size-default v-btn--variant-elevated mb-2\\" data-testid=\\"tabtempo\\"><span class=\\"v-btn__overlay\\"></span><span class=\\"v-btn__underlay\\"></span>
+            <!----><span class=\\"v-btn__content\\" data-no-activator=\\"\\"> Tab Tempo [Space] </span>
+            <!---->
+            <!---->
+          </button></div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\">
+          <div class=\\"v-input v-input--horizontal v-input--density-compact v-input--dirty v-text-field mt-2\\" data-testid=\\"bpm\\">
+            <div class=\\"v-input__prepend\\">
+              <!----><i class=\\"mdi-chevron-left mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM prepended action\\"></i>
+            </div>
+            <div class=\\"v-input__control\\">
+              <div class=\\"v-field v-field--active v-field--dirty v-field--variant-filled v-theme--light\\" role=\\"textbox\\">
+                <div class=\\"v-field__overlay\\"></div>
+                <div class=\\"v-field__loader\\">
+                  <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
+                    <!---->
+                    <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
+                    <transition-stub>
+                      <div class=\\"v-progress-linear__indeterminate\\">
+                        <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
+                        <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
+                      </div>
+                    </transition-stub>
+                    <!---->
+                  </div>
+                </div>
+                <!---->
+                <div class=\\"v-field__field\\" data-no-activator=\\"\\"><label class=\\"v-label v-field-label v-field-label--floating\\" aria-hidden=\\"true\\" for=\\"input-1\\">
+                    <!---->BPM
+                  </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
+                    <!---->BPM
+                  </label>
+                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!---->
+                </div>
+                <!---->
+                <!---->
+                <div class=\\"v-field__outline\\">
+                  <!---->
+                  <!---->
+                </div>
+              </div>
+            </div>
+            <div class=\\"v-input__append\\"><i class=\\"mdi-chevron-right mdi v-icon notranslate v-theme--light v-icon--size-default v-icon--clickable\\" role=\\"button\\" aria-hidden=\\"false\\" aria-label=\\"BPM appended action\\"></i>
+              <!---->
+            </div>
+            <div class=\\"v-input__details\\">
+              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+                <!---->
+              </transition-group-stub>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-10 pa-0 ma-0\\">
+          <div class=\\"v-table v-theme--light v-table--density-default\\">
+            <!---->
+            <div class=\\"v-table__wrapper\\">
+              <table>
+                <thead>
+                  <tr>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision dotted</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Devision tripplet</th>
+                    <th width=\\"16,5%\\" class=\\"text-left\\">Time (ms)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1/1</td>
+                    <td data-testid=\\"msn-0\\">2,400.00 ms</td>
+                    <td class=\\"left-line\\">1/1 .</td>
+                    <td data-testid=\\"msd-0\\">3,600.00 ms</td>
+                    <td class=\\"left-line\\">1/1 T</td>
+                    <td data-testid=\\"mst-0\\">1,600.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/2</td>
+                    <td data-testid=\\"msn-1\\">1,200.00 ms</td>
+                    <td class=\\"left-line\\">1/2 .</td>
+                    <td data-testid=\\"msd-1\\">1,800.00 ms</td>
+                    <td class=\\"left-line\\">1/2 T</td>
+                    <td data-testid=\\"mst-1\\">800.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/4</td>
+                    <td data-testid=\\"msn-2\\">600.00 ms</td>
+                    <td class=\\"left-line\\">1/4 .</td>
+                    <td data-testid=\\"msd-2\\">900.00 ms</td>
+                    <td class=\\"left-line\\">1/4 T</td>
+                    <td data-testid=\\"mst-2\\">400.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/8</td>
+                    <td data-testid=\\"msn-3\\">300.00 ms</td>
+                    <td class=\\"left-line\\">1/8 .</td>
+                    <td data-testid=\\"msd-3\\">450.00 ms</td>
+                    <td class=\\"left-line\\">1/8 T</td>
+                    <td data-testid=\\"mst-3\\">200.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/16</td>
+                    <td data-testid=\\"msn-4\\">150.00 ms</td>
+                    <td class=\\"left-line\\">1/16 .</td>
+                    <td data-testid=\\"msd-4\\">225.00 ms</td>
+                    <td class=\\"left-line\\">1/16 T</td>
+                    <td data-testid=\\"mst-4\\">100.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/32</td>
+                    <td data-testid=\\"msn-5\\">75.00 ms</td>
+                    <td class=\\"left-line\\">1/32 .</td>
+                    <td data-testid=\\"msd-5\\">112.50 ms</td>
+                    <td class=\\"left-line\\">1/32 T</td>
+                    <td data-testid=\\"mst-5\\">50.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/64</td>
+                    <td data-testid=\\"msn-6\\">37.50 ms</td>
+                    <td class=\\"left-line\\">1/64 .</td>
+                    <td data-testid=\\"msd-6\\">56.25 ms</td>
+                    <td class=\\"left-line\\">1/64 T</td>
+                    <td data-testid=\\"mst-6\\">25.00 ms</td>
+                  </tr>
+                  <tr>
+                    <td>1/128</td>
+                    <td data-testid=\\"msn-7\\">18.75 ms</td>
+                    <td class=\\"left-line\\">1/128 .</td>
+                    <td data-testid=\\"msd-7\\">28.13 ms</td>
+                    <td class=\\"left-line\\">1/128 T</td>
+                    <td data-testid=\\"mst-7\\">12.50 ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;
+
+exports[`BPM Comonent > renders Correctly > Initial 1`] = `
+"<div class=\\"v-container fill-height\\">
+  <div class=\\"v-responsive d-flex fill-height pt-4\\">
+    <div class=\\"v-responsive__sizer\\"></div>
+    <!---->
+    <div class=\\"v-responsive__content\\">
+      <div class=\\"v-row d-flex align-center justify-center pb-0\\">
+        <div class=\\"v-col v-col-auto pa-0 ma-0\\"><button type=\\"button\\" class=\\"v-btn v-btn--elevated v-theme--light bg-deeporange v-btn--density-default v-btn--size-default v-btn--variant-elevated mb-2\\" data-testid=\\"tabtempo\\"><span class=\\"v-btn__overlay\\"></span><span class=\\"v-btn__underlay\\"></span>
             <!----><span class=\\"v-btn__content\\" data-no-activator=\\"\\"> Tab Tempo [Space] </span>
             <!---->
             <!---->

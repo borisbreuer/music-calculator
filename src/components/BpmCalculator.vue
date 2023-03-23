@@ -48,10 +48,6 @@ const quaterNoteInMs = computed(() => {
   return (60000 / bpmTemp)
 })
 
-const commaReplace = (n) => {
-  return n.toString().replace(',', '.')
-}
-
 function calculateMs(fraction) {
   return quaterNoteInMs.value * fraction;
 }
@@ -79,6 +75,7 @@ const notes = reactive(notesObjArr)
             @keydown.ctrl.space="tabTempoHandler"
             :color="calculating ? 'amber' : 'deeporange'"
             class="mb-2"
+            data-testid="tabtempo"
           >
             Tab Tempo [Space]
           </v-btn>
@@ -87,8 +84,7 @@ const notes = reactive(notesObjArr)
       <v-row class="d-flex align-center justify-center pb-0">
         <v-col cols="auto" class="pa-0 ma-0">
           <v-text-field
-            :modelValue="bpm"
-            @update:modelValue="$event => bpm = commaReplace($event)"
+            v-model="bpm"
             data-testid="bpm"
             density="compact"
             color="deeporange"
