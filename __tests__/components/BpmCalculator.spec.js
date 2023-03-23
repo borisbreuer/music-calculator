@@ -93,6 +93,7 @@ describe("BPM Comonent", () => {
     expect(wrapper.html()).toMatchSnapshot('tabTempo5x')
     vi.useRealTimers()
   })
+
   it('calculates bpm by 5x tap on btn < 2000', async () => {
     vi.useFakeTimers()
 
