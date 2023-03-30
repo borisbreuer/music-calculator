@@ -17,7 +17,7 @@ export default defineConfig({
     VueI18nPlugin({
       include: resolve(
         dirname(fileURLToPath(import.meta.url)),
-        "./src/locales/**"
+        "./src/i18n/locales/**"
       ),
     }),
     vuetify({
@@ -43,11 +43,14 @@ export default defineConfig({
     port: 3000,
   },
   test: {
+    include: ['./tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     globals: false,
     environment: "jsdom",
     setupFiles: "vuetify.config.js",
     deps: {
-      inline: ["vuetify"],
+      inline: [
+        "vuetify"
+      ],
     },
   },
 });

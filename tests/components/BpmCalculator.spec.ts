@@ -1,10 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { mount } from "@vue/test-utils";
+import { mount, VueWrapper } from "@vue/test-utils";
 
 import { createVuetify } from "vuetify";
-import { createI18n } from 'vue-i18n';
+import { createI18n, IntlNumberFormat } from 'vue-i18n';
 import messages from "@intlify/unplugin-vue-i18n/messages";
-import numberFormats from "@/i18n/numberFormats" 
+
+// import numberFormats from "../mocks/numberFormats" 
+import numberFormats from "@/i18n/numberFormats";
+
 import BpmCalculator from "@/components/BpmCalculator.vue";
 
 const vuetify = createVuetify();
@@ -15,34 +18,41 @@ const i18n = createI18n({
   fallbackLocale: "en",
   availableLocales: ["en", "de"],
   messages,
-  numberFormats
+  numberFormats,
 });
 
-const mockTfn = vi.fn((t) => t)
-const mockNfn = vi.fn((n) => n)
-i18n.t = mockTfn
-i18n.n = mockNfn
+const window = global
+
+const mockTfn = vi.fn((t: string): string => t)
+const mockNfn = vi.fn((n: number) => n.toLocaleString('en', numberFormats.en.decimal ))
 
 describe("BPM Comonent", () => {
-  let wrapper;
-  const createComponent = () =>
-    (wrapper = mount(BpmCalculator, {
+  let wrapper: VueWrapper<any>;
+
+  const findBpmTabTempoBtn = () => wrapper.find('[data-testid="tabtempo"]');
+  const findBpmDecrementBtn = () => wrapper.find('[data-testid="bpm"] > .v-input__prepend > i');
+  const findBpmInput = () => wrapper.find<HTMLInputElement>('[data-testid="bpm"] input');
+  const findBpmIncrementBtn = () => wrapper.find('[data-testid="bpm"] > .v-input__append > i');
+  const findMsTd = (varint: string, i: number) => wrapper.find(`[data-testid="ms${varint}-${i}"]`);
+
+  beforeEach(() => { 
+    wrapper = mount(BpmCalculator, {
       global: {
         plugins: [
           vuetify,
           i18n
         ],
+        mocks: {
+          window,
+          $t: mockTfn,
+          $n: mockNfn
+        }
       },
-    }));
-
-  const findBpmTabTempoBtn = () => wrapper.find('[data-testid="tabtempo"]');
-  const findBpmDecrementBtn = () => wrapper.find('[data-testid="bpm"] > .v-input__prepend > i');
-  const findBpmInput = () => wrapper.find('[data-testid="bpm"] input');
-  const findBpmIncrementBtn = () => wrapper.find('[data-testid="bpm"] > .v-input__append > i');
-  const findMsTd = (varint, i) => wrapper.find(`[data-testid="ms${varint}-${i}"]`);
-
-  beforeEach(() => createComponent());
-  afterEach(() => wrapper.unmount());
+    })
+  });
+  afterEach(() => {
+    wrapper.unmount()
+  });
 
   it("renders Correctly", async () => {
     expect(BpmCalculator).toBeTruthy();

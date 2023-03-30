@@ -1,13 +1,13 @@
-<script setup>
-import { ref, reactive, computed } from 'vue'
+<script setup lang="ts">
+import { ref, reactive, computed, Ref } from 'vue'
 
 let abSwitch = 0
-let popArray = null
-let timeArr = ref([])
-const timeA = ref(null)
-const timeB = ref(null)
+let popArray: number | null = null
+let timeArr: Ref<number[]> = ref([])
+const timeA: Ref<number | null> = ref(null)
+const timeB: Ref<number | null> = ref(null)
 const calculating = ref(false)
-const bpm = ref(120);
+const bpm: Ref<string> = ref('120');
 
 function tabTempoHandler() {
   if(abSwitch === 0){
@@ -26,9 +26,9 @@ function tabTempoHandler() {
   if(timeArr.value.length){
     if(popArray === null){
       const time = timeArr.value[timeArr.value.length - 1] * 4 > 2000 ? 2000 : timeArr.value[timeArr.value.length - 1] * 4
-      popArray = setInterval(() => {
+      popArray = window.setInterval(() => {
         timeArr.value.shift()
-        if(!timeArr.value.length) {
+        if(!timeArr.value.length && popArray != null) {
           clearInterval(popArray)
           abSwitch = 0
           timeArr.value = []
@@ -42,14 +42,14 @@ function tabTempoHandler() {
   } 
 }
 
-const quaterNoteInMs = computed(() => {
+const quaterNoteInMs = computed((): number => {
   let bpmTemp = parseFloat(bpm.value);
   if(bpmTemp === 0 || bpmTemp === null || bpmTemp === undefined || isNaN(bpmTemp)) return 0
   return (60000 / bpmTemp)
 })
 
-function calculateMs(fraction) {
-  return quaterNoteInMs.value * fraction;
+function calculateMs(fraction: number): number {
+  return (quaterNoteInMs.value * fraction);
 }
 
 const trippletFraction = ref(0.6666666666666667);
@@ -59,7 +59,12 @@ const numerator = 4;
 const denominators = [1, 2, 4, 8, 16, 32, 64, 128];
 
 const notesObjArr = denominators.map((d) => {
-  return ({ fraction: (numerator / d), value: `1/${d}`})
+  return (
+    { 
+      fraction: (numerator / d), 
+      value: `1/${d}`
+    }
+  )
 })
 
 const notes = reactive(notesObjArr)
