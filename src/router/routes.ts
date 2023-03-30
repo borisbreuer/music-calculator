@@ -15,6 +15,21 @@ export default [
     ],
   },
   {
+    path: "/circle-of-fifth",
+    component: () => import("@/layouts/default/Default.vue"),
+    children: [
+      {
+        path: "",
+        name: "circle_of_fifth",
+        meta: {
+          i18n: "nav.circle_of_fifth"
+        },
+        component: () =>
+          import(/* webpackChunkName: "euclidean" */ "@/views/Circle.vue"),
+      },
+    ],
+  },
+  {
     path: "/euclidean-rhythm-calculator",
     component: () => import("@/layouts/default/Default.vue"),
     children: [

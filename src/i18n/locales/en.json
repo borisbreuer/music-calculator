@@ -1,6 +1,7 @@
 {
   "nav": {
     "home": "Home",
+    "circle_of_fifth": "Circle of Fifth",
     "euclidean_calculator": "Euclidean Calculator",
     "bpm_calculator": "BPM Calculator"
   },
