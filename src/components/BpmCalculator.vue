@@ -102,9 +102,9 @@ const notes = reactive(notesObjArr)
             autofocus
             class="mt-2"
             prepend-icon="mdi-chevron-left"
-            @click:prepend="() => bpm--"
+            @click:prepend="() => bpm = (parseFloat(bpm) - 1).toString()"
             append-icon="mdi-chevron-right"
-            @click:append="() => bpm++"
+            @click:append="() => bpm = (parseFloat(bpm) + 1).toString()"
           />
         </v-col>
       </v-row>

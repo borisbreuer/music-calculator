@@ -2,10 +2,9 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 
 import { createVuetify } from "vuetify";
-import { createI18n, IntlNumberFormat } from 'vue-i18n';
+import { createI18n } from 'vue-i18n';
 import messages from "@intlify/unplugin-vue-i18n/messages";
 
-// import numberFormats from "../mocks/numberFormats" 
 import numberFormats from "@/i18n/numberFormats";
 
 import BpmCalculator from "@/components/BpmCalculator.vue";
@@ -21,7 +20,7 @@ const i18n = createI18n({
   numberFormats,
 });
 
-const window = global
+// const window = global
 
 const mockTfn = vi.fn((t: string): string => t)
 const mockNfn = vi.fn((n: number) => n.toLocaleString('en', numberFormats.en.decimal ))
@@ -43,7 +42,7 @@ describe("BPM Comonent", () => {
           i18n
         ],
         mocks: {
-          window,
+          // window,
           $t: mockTfn,
           $n: mockNfn
         }
