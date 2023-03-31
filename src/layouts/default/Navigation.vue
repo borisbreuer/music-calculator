@@ -22,8 +22,8 @@
       temporary
     >
       <v-list>
-        <v-list-item v-for="(item, i) in navItems" :to="item.path" :key="item.children[0].meta.i18n + i">
-          {{ $t(item.children[0].meta.i18n) }}
+        <v-list-item v-for="(item, i) in navItems" :to="item.path" :key="item.i18n + i">
+          {{ $t(item.i18n) }}
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -38,7 +38,15 @@ import { useI18n }  from 'vue-i18n';
 const i18n = useI18n();
 
 const drawer = ref(false)
-const navItems = ref(routes)
+
+const navArray = routes.map((n) => ( 
+  {
+    path: n.path,
+    i18n: n.children[0].meta.i18n
+  }
+));
+
+const navItems = ref(navArray)
 
 const languages = [...i18n.availableLocales.map( l => ({
   value: l,

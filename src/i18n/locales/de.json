@@ -3,7 +3,8 @@
     "home": "Start",
     "circle_of_fifth": "Quinten Zirkel",
     "euclidean_calculator": "Euklidischer Rechner",
-    "bpm_calculator": "BPM Rechner"
+    "bpm_calculator": "BPM Rechner",
+    "canvas": "Canvas"
   },
   "home": {
     "title": "Musik-Rechner",
