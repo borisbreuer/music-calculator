@@ -18,9 +18,10 @@ jobs:
         with: 
           node-version: 18.15.0
       - name: npm install and npm run build
-        - run: npm i
-        - run: npm run test
-        - run: npm run build
+        run: |
+          npm i
+          npm run test
+          npm run build
       
       - name: copy files
         uses: appleboy/scp-action@master
