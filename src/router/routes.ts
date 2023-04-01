@@ -59,19 +59,19 @@ export default [
       },
     ],
   },
-  {
-    path: "/canvas",
-    component: () => import("@/layouts/default/Default.vue"),
-    children: [
-      {
-        path: "",
-        name: "canvas",
-        meta: {
-          i18n: "nav.canvas"
-        },
-        component: () =>
-          import(/* webpackChunkName: "bpm" */ "@/views/Canvas.vue"),
-      },
-    ],
-  },
+  // {
+  //   path: "/canvas",
+  //   component: () => import("@/layouts/default/Default.vue"),
+  //   children: [
+  //     {
+  //       path: "",
+  //       name: "canvas",
+  //       meta: {
+  //         i18n: "nav.canvas"
+  //       },
+  //       component: () =>
+  //         import(/* webpackChunkName: "bpm" */ "@/views/Canvas.vue"),
+  //     },
+  //   ],
+  // },
 ]

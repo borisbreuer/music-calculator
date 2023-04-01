@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { start } from 'repl';
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useTheme } from 'vuetify'
 

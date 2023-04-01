@@ -3,7 +3,7 @@
     <template v-slot:prepend>
       <v-app-bar-nav-icon @click.stop="() => drawer = !drawer"></v-app-bar-nav-icon>
     </template>
-    {{ $t("home.title") }}
+    {{ $t("home.title") }} - {{ $t(currentRoute.meta.i18n as string) }}
     <template v-slot:append>
       <v-select 
         v-model="$i18n.locale"
@@ -34,8 +34,12 @@
 import { ref } from 'vue';
 import routes from '@/router/routes'
 import { useI18n }  from 'vue-i18n';
+import { useRoute } from 'vue-router';
 
 const i18n = useI18n();
+const router = useRoute()
+
+const currentRoute = ref(router)
 
 const drawer = ref(false)
 

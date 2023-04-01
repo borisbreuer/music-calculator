@@ -15,8 +15,6 @@ const mm = ref([...major.map((item, i) => (
   }
 ))])
 
-
-
 function handler(event: MouseEvent) {
   const el: HTMLDivElement = event.target as HTMLDivElement;
   if(el.dataset.index) {
@@ -32,46 +30,42 @@ function handler(event: MouseEvent) {
 <template>
   <v-container class="fill-height pb-0">
     <v-responsive class="d-flex text-center fill-height pb-10">
-   
-    
-    <v-row  class="fill-height" >
-      <v-col cols="12" class="pa-5 d-flex align-center justify-center  fill-height">
-        <div class="circle">
-          <div 
-            v-for="(item, i) in major"
-            :key="i + '_ma'"
-            :data-index="i"
-            class="major"
-            :class="{ 'glow': (left === i || index === i || right === i) }"
-            v-html="item"
-            @click="handler"
-          ></div>
-        </div>
-        <div class="circle no-border">
-          <div
-            v-for="(item, i) in minor"
-            :key="i + '_mi'"
-            :data-index="i"
-            class="minor"
-            :class="{ 'glow': (left === i || index === i || right === i) }"
-            v-html="item"
-            @click="handler"
-          ></div>
-        </div>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="12" >
-        <span>{{ clicked }}</span>
-      </v-col>
-    </v-row>
+      <v-row  class="fill-height" >
+        <v-col cols="12" class="pa-5 d-flex align-center justify-center  fill-height">
+          <div class="circle">
+            <div 
+              v-for="(item, i) in major"
+              :key="i + '_ma'"
+              :data-index="i"
+              class="major"
+              :class="{ 'glow': (left === i || index === i || right === i) }"
+              v-html="item"
+              @click="handler"
+            ></div>
+          </div>
+          <div class="circle no-border">
+            <div
+              v-for="(item, i) in minor"
+              :key="i + '_mi'"
+              :data-index="i"
+              class="minor"
+              :class="{ 'glow': (left === i || index === i || right === i) }"
+              v-html="item"
+              @click="handler"
+            ></div>
+          </div>
+        </v-col>
+      </v-row>
+      <!-- <v-row>
+        <v-col cols="12" >
+          <span>{{ clicked }}</span>
+        </v-col>
+      </v-row> -->
     </v-responsive>
   </v-container>
 </template>
 
 <style lang="scss">
-
 .circle {
   $size-outer: 70;
   --size-outer-w: #{$size-outer}vw;
