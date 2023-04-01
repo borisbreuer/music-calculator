@@ -62,7 +62,7 @@ function animate() {
   ctx.value.fillStyle = vColors.deeporange;
   ctx.value.fill();
 
-  t.value += 0.02;
+  t.value += 0.015;
   animationFrame.value = window.requestAnimationFrame(animate)
 }
 
