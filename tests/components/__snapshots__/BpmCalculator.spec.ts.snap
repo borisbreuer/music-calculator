@@ -26,7 +26,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn < 2000 > tabTempo5x<2000
                   <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
                     <!---->
                     <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
-                    <transition-stub>
+                    <transition-stub name=\\"fade-transition\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
                       <div class=\\"v-progress-linear__indeterminate\\">
                         <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
                         <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
@@ -41,7 +41,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn < 2000 > tabTempo5x<2000
                   </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
                     <!---->BPM
                   </label>
-                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!----><input autofocus=\\"\\" placeholder=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
                   <!---->
                 </div>
                 <!---->
@@ -56,7 +56,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn < 2000 > tabTempo5x<2000
               <!---->
             </div>
             <div class=\\"v-input__details\\">
-              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+              <transition-group-stub name=\\"slide-y-transition\\" tag=\\"div\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
                 <!---->
               </transition-group-stub>
               <!---->
@@ -183,7 +183,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn > tabTempo5x 1`] = `
                   <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
                     <!---->
                     <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
-                    <transition-stub>
+                    <transition-stub name=\\"fade-transition\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
                       <div class=\\"v-progress-linear__indeterminate\\">
                         <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
                         <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
@@ -198,7 +198,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn > tabTempo5x 1`] = `
                   </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
                     <!---->BPM
                   </label>
-                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!----><input autofocus=\\"\\" placeholder=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
                   <!---->
                 </div>
                 <!---->
@@ -213,7 +213,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn > tabTempo5x 1`] = `
               <!---->
             </div>
             <div class=\\"v-input__details\\">
-              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+              <transition-group-stub name=\\"slide-y-transition\\" tag=\\"div\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
                 <!---->
               </transition-group-stub>
               <!---->
@@ -314,7 +314,7 @@ exports[`BPM Comonent > calculates bpm by 5x tap on btn > tabTempo5x 1`] = `
 </div>"
 `;
 
-exports[`BPM Comonent > calculates bpm by tap on btn > tabTempo 1`] = `
+exports[`BPM Comonent > calculates bpm by tap on btn 1`] = `
 "<div class=\\"v-container fill-height\\">
   <div class=\\"v-responsive d-flex fill-height pt-4\\">
     <div class=\\"v-responsive__sizer\\"></div>
@@ -340,7 +340,7 @@ exports[`BPM Comonent > calculates bpm by tap on btn > tabTempo 1`] = `
                   <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
                     <!---->
                     <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
-                    <transition-stub>
+                    <transition-stub name=\\"fade-transition\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
                       <div class=\\"v-progress-linear__indeterminate\\">
                         <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
                         <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
@@ -355,7 +355,7 @@ exports[`BPM Comonent > calculates bpm by tap on btn > tabTempo 1`] = `
                   </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
                     <!---->BPM
                   </label>
-                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!----><input autofocus=\\"\\" placeholder=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
                   <!---->
                 </div>
                 <!---->
@@ -370,7 +370,7 @@ exports[`BPM Comonent > calculates bpm by tap on btn > tabTempo 1`] = `
               <!---->
             </div>
             <div class=\\"v-input__details\\">
-              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+              <transition-group-stub name=\\"slide-y-transition\\" tag=\\"div\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
                 <!---->
               </transition-group-stub>
               <!---->
@@ -497,7 +497,7 @@ exports[`BPM Comonent > renders Correctly > Initial 1`] = `
                   <div class=\\"v-progress-linear v-theme--light\\" style=\\"top: 0px; height: 0px; --v-progress-linear-height: 2px; left: 50%; transform: translateX(-50%);\\" role=\\"progressbar\\" aria-hidden=\\"true\\" aria-valuemin=\\"0\\" aria-valuemax=\\"100\\">
                     <!---->
                     <div class=\\"v-progress-linear__background bg-deeporange\\" style=\\"width: 100%;\\"></div>
-                    <transition-stub>
+                    <transition-stub name=\\"fade-transition\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\">
                       <div class=\\"v-progress-linear__indeterminate\\">
                         <div class=\\"v-progress-linear__indeterminate long bg-deeporange\\"></div>
                         <div class=\\"v-progress-linear__indeterminate short bg-deeporange\\"></div>
@@ -512,7 +512,7 @@ exports[`BPM Comonent > renders Correctly > Initial 1`] = `
                   </label><label class=\\"v-label v-field-label\\" for=\\"input-1\\">
                     <!---->BPM
                   </label>
-                  <!----><input autofocus=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
+                  <!----><input autofocus=\\"\\" placeholder=\\"\\" size=\\"2\\" type=\\"number\\" id=\\"input-1\\" aria-describedby=\\"input-1-messages\\" inputmode=\\"decimal\\" max=\\"260\\" maxlength=\\"5\\" class=\\"v-field__input\\">
                   <!---->
                 </div>
                 <!---->
@@ -527,7 +527,7 @@ exports[`BPM Comonent > renders Correctly > Initial 1`] = `
               <!---->
             </div>
             <div class=\\"v-input__details\\">
-              <transition-group-stub tag=\\"div\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
+              <transition-group-stub name=\\"slide-y-transition\\" tag=\\"div\\" appear=\\"false\\" persisted=\\"false\\" css=\\"true\\" class=\\"v-messages\\" role=\\"alert\\" aria-live=\\"polite\\" id=\\"input-1-messages\\">
                 <!---->
               </transition-group-stub>
               <!---->

@@ -20,10 +20,12 @@ const i18n = createI18n({
   numberFormats,
 });
 
-// const window = global
-
 const mockTfn = vi.fn((t: string): string => t)
 const mockNfn = vi.fn((n: number) => n.toLocaleString('en', numberFormats.en.decimal ))
+
+const time = Date.now()
+
+const window = globalThis;
 
 describe("BPM Comonent", () => {
   let wrapper: VueWrapper<any>;
@@ -35,6 +37,7 @@ describe("BPM Comonent", () => {
   const findMsTd = (varint: string, i: number) => wrapper.find(`[data-testid="ms${varint}-${i}"]`);
 
   beforeEach(() => { 
+    vi.useFakeTimers()
     wrapper = mount(BpmCalculator, {
       global: {
         plugins: [
@@ -42,7 +45,7 @@ describe("BPM Comonent", () => {
           i18n
         ],
         mocks: {
-          // window,
+          window,
           $t: mockTfn,
           $n: mockNfn
         }
@@ -51,6 +54,7 @@ describe("BPM Comonent", () => {
   });
   afterEach(() => {
     wrapper.unmount()
+    vi.useRealTimers()
   });
 
   it("renders Correctly", async () => {
@@ -60,43 +64,26 @@ describe("BPM Comonent", () => {
   });
 
   it('calculates bpm by tap on btn', async () => {
-    vi.useFakeTimers()
-    vi.setSystemTime(1000)
+    const time = Date.now();
+    vi.setSystemTime(time)
     await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1600)
+    vi.setSystemTime(time + 600)
     await findBpmTabTempoBtn().trigger('click')
+    
     expect(findBpmInput().element.value).toBe('100.00')
-    expect(wrapper.html()).toMatchSnapshot('tabTempo')
-    vi.useRealTimers()
+    expect(wrapper.html()).toMatchSnapshot()
+    
   })
 
   it('calculates bpm by 5x tap on btn', async () => {
-    vi.useFakeTimers()
+    const time = Date.now();
 
-    vi.setSystemTime(1000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1600)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(1000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1600)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(1000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1600)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(1000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1600)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(1000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1600)
-    await findBpmTabTempoBtn().trigger('click')
+    for(let i = 0; i < 6; i++) {
+      vi.setSystemTime(time * i)
+      await findBpmTabTempoBtn().trigger('click')
+      vi.setSystemTime(time * i + 600)
+      await findBpmTabTempoBtn().trigger('click')
+    }
 
     expect(findBpmInput().element.value).toBe('100.00')
     expect(wrapper.html()).toMatchSnapshot('tabTempo5x')
@@ -104,36 +91,17 @@ describe("BPM Comonent", () => {
   })
 
   it('calculates bpm by 5x tap on btn < 2000', async () => {
-    vi.useFakeTimers()
+    const time = Date.now();
 
-    vi.setSystemTime(5000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(5200)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(4000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(4200)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(3000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(3200)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(2000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(2200)
-    await findBpmTabTempoBtn().trigger('click')
-
-    vi.setSystemTime(1000)
-    await findBpmTabTempoBtn().trigger('click')
-    vi.setSystemTime(1200)
-    await findBpmTabTempoBtn().trigger('click')
+    for(let i = 0; i < 5; i++) {
+      vi.setSystemTime(time * i)
+      await findBpmTabTempoBtn().trigger('click')
+      vi.setSystemTime(time * i + 200)
+      await findBpmTabTempoBtn().trigger('click')
+    }
 
     expect(findBpmInput().element.value).toBe('300.00')
     expect(wrapper.html()).toMatchSnapshot('tabTempo5x<2000')
-    vi.useRealTimers()
   })
 
   it("bpm input is empty on focus", async () => {
