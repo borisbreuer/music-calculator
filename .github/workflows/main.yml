@@ -32,4 +32,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "./dist/*"
           target: "./music-calculator/"
+          rm: true
           strip_components: 1
