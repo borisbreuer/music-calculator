@@ -155,7 +155,7 @@ onMounted(() => {
             maxlength="3"
             hide-details
             class="mt-2"
-            @input="calculateSequence"
+            @input="inputHandler"
             prepend-icon="mdi-chevron-left"
             @click:prepend="() => { notes--; inputHandler() }"
             append-icon="mdi-chevron-right"
@@ -177,7 +177,7 @@ onMounted(() => {
             maxlength="3"
             hide-details
             class="mt-2"
-            @input="calculateSequence"
+            @input="inputHandler"
             prepend-icon="mdi-chevron-left"
             @click:prepend="() => { rotate--; inputHandler() }"
             append-icon="mdi-chevron-right"
