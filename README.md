@@ -1,4 +1,4 @@
-# default
+# music calculator
 
 ## Project setup
 
